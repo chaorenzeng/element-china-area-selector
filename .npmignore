@@ -1,0 +1,9 @@
+# 忽略目录
+packages/
+node_modules/
+src/
+ 
+# 忽略指定文件
+.gitignore
+babel.config.js
+*.map

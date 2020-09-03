@@ -1,0 +1,67 @@
+{
+  "name": "element-china-area-selector",
+  "version": "1.0.4",
+  "description": "Element中国城市选择组件",
+  "author": "KevinTseng <921435247@qq.com>",
+  "private": false,
+  "license": "MIT",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lib": "vue-cli-service build --target lib --name element-china-area-select --dest lib ./src/packages/index.js"
+  },
+  "main": "lib/element-china-area-select.umd.min.js",
+  "keywords": [
+    "vue",
+    "element",
+    "element city",
+    "element china",
+    "element area",
+    "element province",
+    "element 级联",
+    "element 省市级联",
+    "china city"
+  ],
+  "dependencies": {
+    "axios": "^0.20.0",
+    "core-js": "^3.6.5",
+    "element-ui": "^2.4.5",
+    "vue": "^2.6.11"
+  },
+  "homepage": "https://github.com/chaorenzeng/element-china-area-selector",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chaorenzeng/element-china-area-selector.git"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "babel-eslint": "^10.1.0",
+    "babel-plugin-component": "^1.1.1",
+    "cross-env": "^7.0.2",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "vue-cli-plugin-element": "~1.0.1",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
