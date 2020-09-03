@@ -2,7 +2,7 @@
 
 > Element 中国省市区级联
 
-![示例](https://github.com/chaorenzeng/element-china-area-selector/public/example.png)
+![示例](https://github.com/chaorenzeng/element-china-area-selector/blob/master/public/example.png?raw=true)
 
 ### 安装
 
