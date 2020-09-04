@@ -15,25 +15,26 @@ npm install --save element-china-area-selector
 在 `main.js` 文件中引入插件并注册
 
 ```js
-import ElementChinaAreaSelector from "element-china-area-selector";
-Vue.use(ElementChinaAreaSelector);
+import ElementChinaAreaSelector from 'element-china-area-selector'
+Vue.use(ElementChinaAreaSelector)
 ```
 
 ### 可选参数
 
-| 参数名           | 默认值 | 类型    | 是否必填 | 说明                   |
-| ---------------- | ------ | ------- | -------- | ---------------------- |
-| province-code    | null   | Number  | 是       | 省份编码               |
-| city-code        | null   | Number  | 否       | 城市编码               |
-| region-code      | null   | Number  | 否       | 区县编码               |
-| show-city        | true   | Boolean | 否       | 是否显示城市下拉       |
-| show-region      | false  | Boolean | 否       | 是否显示区县下拉       |
-| area-label       | ''     | String  | 否       | el-form-item 文字标签  |
-| area-prop        | ''     | String  | 否       | el-form-item prop 属性 |
-| disabled         | false  | Boolean | 否       | 是否全部不可选         |
-| provinceDisabled | false  | Boolean | 否       | 是否省份不可选         |
-| cityDisabled     | false  | Boolean | 否       | 是否城市不可选         |
-| regionDisabled   | false  | Boolean | 否       | 是否区县不可选         |
+| 参数名           | 默认值 | 类型    | 是否必填 | 说明                                                                             |
+| ---------------- | ------ | ------- | -------- | -------------------------------------------------------------------------------- |
+| province-code    | null   | Number  | 是       | 省份编码                                                                         |
+| city-code        | null   | Number  | 否       | 城市编码                                                                         |
+| region-code      | null   | Number  | 否       | 区县编码                                                                         |
+| show-city        | true   | Boolean | 否       | 是否显示城市下拉                                                                 |
+| show-region      | false  | Boolean | 否       | 是否显示区县下拉                                                                 |
+| area-label       | ''     | String  | 否       | el-form-item 文字标签                                                            |
+| area-prop        | ''     | String  | 否       | el-form-item prop 属性                                                           |
+| disabled         | false  | Boolean | 否       | 是否全部不可选                                                                   |
+| provinceDisabled | false  | Boolean | 否       | 是否省份不可选                                                                   |
+| cityDisabled     | false  | Boolean | 否       | 是否城市不可选                                                                   |
+| regionDisabled   | false  | Boolean | 否       | 是否区县不可选                                                                   |
+| options          | null   | Object  | 否       | [更多配置](https://element.eleme.cn/#/zh-CN/component/form#form-item-attributes) |
 
 ### 可选方法
 
@@ -99,6 +100,7 @@ Vue.use(ElementChinaAreaSelector);
       />
       <el-form-item>
         <el-button type="primary" @click="subForm1">提交</el-button>
+        <el-button @click="clearForm1">清空</el-button>
       </el-form-item>
     </el-form>
     <el-form
@@ -144,11 +146,11 @@ Vue.use(ElementChinaAreaSelector);
 
 <script>
   export default {
-    name: "App",
+    name: 'App',
     data() {
       return {
         options: {
-          size: "mini",
+          size: 'mini',
         },
         formData: {
           provinceCode: 110000,
@@ -159,14 +161,13 @@ Vue.use(ElementChinaAreaSelector);
         form1Data: {
           provinceCode: 110000,
           cityCode: null,
-          regionCode: 110105,
         },
         formDataRules1: {
           cityCode: [
             {
               required: true,
-              message: "请选择城市",
-              trigger: "change",
+              message: '请选择城市',
+              trigger: 'change',
             },
           ],
         },
@@ -180,42 +181,48 @@ Vue.use(ElementChinaAreaSelector);
           regionCode: [
             {
               required: true,
-              message: "请选择区县",
-              trigger: "change",
+              message: '请选择区县',
+              trigger: 'change',
             },
           ],
         },
-      };
+      }
     },
     methods: {
       changeArea(areaObj) {
-        console.warn("-> ChangeArea", areaObj);
+        console.warn('-> ChangeArea', areaObj)
       },
       changeArea1(areaObj) {
-        this.form1Data.provinceCode = areaObj.provinceCode;
-        this.form1Data.cityCode = areaObj.cityCode;
-        this.form1Data.regionCode = areaObj.regionCode;
+        this.form1Data.provinceCode = areaObj.provinceCode
+        this.form1Data.cityCode = areaObj.cityCode
+        this.form1Data.regionCode = areaObj.regionCode
       },
       changeArea2(areaObj) {
-        this.form2Data.provinceCode = areaObj.provinceCode;
-        this.form2Data.cityCode = areaObj.cityCode;
-        this.form2Data.regionCode = areaObj.regionCode;
+        this.form2Data.provinceCode = areaObj.provinceCode
+        this.form2Data.cityCode = areaObj.cityCode
+        this.form2Data.regionCode = areaObj.regionCode
       },
       subForm1() {
         this.$refs.form1.validate((res) => {
           if (res) {
-            console.log("验证通过");
+            console.log('验证通过')
           }
-        });
+        })
+      },
+      clearForm1() {
+        this.form1Data.cityCode = null
+        this.$refs.form1.clearValidate()
       },
       subForm2() {
         this.$refs.form2.validate((res) => {
           if (res) {
-            console.log("验证通过");
+            console.log('验证通过')
           }
-        });
+        })
       },
     },
-  };
+  }
 </script>
 ```
+
+[Github 链接](https://github.com/chaorenzeng/element-china-area-selector)
