@@ -48,69 +48,69 @@
 </template>
 
 <script>
-import Data from "./data.json";
+import Data from './data.json'
 export default {
-  name: "ElementChinaAreaSelector",
+  name: 'ElementChinaAreaSelector',
   props: {
     options: {
       type: Object,
-      default: null,
+      default: null
     },
     // el-form-item label标签
     areaLabel: {
       type: String,
-      default: "",
+      default: ''
     },
     // el-form-item prop属性
     areaProp: {
       type: String,
-      default: "",
+      default: ''
     },
     // 省份编码
     provinceCode: {
       type: Number,
-      default: null,
+      default: null
     },
     // 城市编码
     cityCode: {
       type: Number,
-      default: null,
+      default: null
     },
     // 区县编码
     regionCode: {
       type: Number,
-      default: null,
+      default: null
     },
     // 全部不可选
     disabled: {
       type: Boolean,
-      default: false,
+      default: false
     },
     // 省份不可选
     provinceDisabled: {
       type: Boolean,
-      default: false,
+      default: false
     },
     // 城市不可选
     cityDisabled: {
       type: Boolean,
-      default: false,
+      default: false
     },
     // 区县不可选
     regionDisabled: {
       type: Boolean,
-      default: false,
+      default: false
     },
     // 显示城市下拉
     showCity: {
       type: Boolean,
-      default: true,
+      default: true
     },
     // 显示区县下拉
     showRegion: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
     return {
@@ -123,26 +123,26 @@ export default {
       cities: [],
       regions: [],
       hasLoadProvince: false,
-      hasLoadCities: false,
-    };
+      hasLoadCities: false
+    }
   },
   watch: {
     provinceCode: {
       handler() {
-        this.presetArea();
+        this.presetArea()
       },
-      immediate: true,
-    },
+      immediate: true
+    }
   },
   created() {
-    this.getAddressData();
+    this.getAddressData()
   },
   methods: {
     // 获取省市数据
     getAddressData() {
-      this.hasLoadProvince = true;
-      this.provinces = Data.area;
-      this.presetArea();
+      this.hasLoadProvince = true
+      this.provinces = Data.area
+      this.presetArea()
       // getRegionList().then((res) => {
       //   this.hasLoadProvince = true
       //   this.provinces = res.response
@@ -151,81 +151,84 @@ export default {
     },
     // 设置区域
     presetArea(provinceCodeIn, cityCodeIn, regionCodeIn) {
-      const { provinceCode, cityCode, regionCode } = this;
-      this.cities = [];
-      this.province = provinceCodeIn || provinceCode;
-      this.changeProvince(this.provinceCode);
-      this.city = cityCodeIn || cityCode;
-      this.changeCity(this.cityCode);
-      if (this.showRegion) {
-        this.region = regionCodeIn || regionCode;
-        this.changeRegion(this.region);
-      }
+      const { provinceCode, cityCode, regionCode } = this
+      this.cities = []
+      this.province = provinceCodeIn || provinceCode
+      this.changeProvince(this.provinceCode)
+      // 不需要城市
+      if (!this.showCity) return
+      this.city = cityCodeIn || cityCode
+      this.changeCity(this.cityCode)
+
+      // 不需要区县
+      if (!this.showRegion) return
+      this.region = regionCodeIn || regionCode
+      this.changeRegion(this.region)
     },
     // 获取当前结果
     getAreaRes() {
       const res = {
         provinceCode: this.province,
         cityCode: this.city,
-        regionCode: this.region,
-      };
-      return res;
+        regionCode: this.region
+      }
+      return res
     },
     // 修改省份
     changeProvince(value) {
       if (!this.hasLoadProvince) {
-        return;
+        return
       }
-      if (value !== "") {
-        this.city = null;
-        this.loadingCity = true;
+      if (value !== '') {
+        this.city = null
+        this.loadingCity = true
         for (const item of this.provinces) {
           if (item.ReginNum === value) {
-            this.hasLoadCities = true;
-            this.cities = item.SubLst;
-            this.loadingCity = false;
-            break;
+            this.hasLoadCities = true
+            this.cities = item.SubLst
+            this.loadingCity = false
+            break
           } else {
-            continue;
+            continue
           }
         }
       } else {
-        this.cities = [];
+        this.cities = []
       }
       if (this.showRegion) {
-        this.region = null;
+        this.region = null
       }
-      this.$emit("areaSelectChange", this.getAreaRes());
+      this.$emit('areaSelectChange', this.getAreaRes())
     },
     // 修改城市
     changeCity(value) {
       // 加载区县
       if (this.showRegion) {
         if (!this.hasLoadCities) {
-          return;
+          return
         }
-        if (value !== "") {
-          this.region = null;
-          this.loadingRegion = true;
+        if (value !== '') {
+          this.region = null
+          this.loadingRegion = true
           for (const item of this.cities) {
             if (item.ReginNum === value) {
-              this.regions = item.SubLst;
-              this.loadingRegion = false;
-              break;
+              this.regions = item.SubLst
+              this.loadingRegion = false
+              break
             } else {
-              continue;
+              continue
             }
           }
         } else {
-          this.regions = [];
+          this.regions = []
         }
       }
-      this.$emit("areaSelectChange", this.getAreaRes());
+      this.$emit('areaSelectChange', this.getAreaRes())
     },
     // 修改区县
     changeRegion() {
-      this.$emit("areaSelectChange", this.getAreaRes());
-    },
-  },
-};
+      this.$emit('areaSelectChange', this.getAreaRes())
+    }
+  }
+}
 </script>

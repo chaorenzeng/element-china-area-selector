@@ -1,8 +1,11 @@
 # element-china-area-selector
 
+[![npm](https://img.shields.io/npm/v/element-china-area-selector.svg)](https://www.npmjs.com/package/element-china-area-selector)
+[![npm](https://img.shields.io/npm/dt/element-china-area-selector.svg)](https://www.npmjs.com/package/element-china-area-selector)
+
 > Element 中国省市区级联
 
-![示例](https://github.com/chaorenzeng/element-china-area-selector/blob/master/public/example.png?raw=true)
+![示例](https://s1.ax1x.com/2020/09/12/wUIhBd.png)
 
 ### 安装
 
@@ -224,5 +227,3 @@ Vue.use(ElementChinaAreaSelector)
   }
 </script>
 ```
-
-[Github 链接](https://github.com/chaorenzeng/element-china-area-selector)

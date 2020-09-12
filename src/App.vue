@@ -95,13 +95,13 @@ export default {
         size: 'mini'
       },
       formData: {
-        provinceCode: 110000,
-        cityCode: 110100,
-        regionCode: 110105
+        provinceCode: 330000,
+        cityCode: 330100,
+        regionCode: 330108
       },
       // 验证省市
       form1Data: {
-        provinceCode: 110000,
+        provinceCode: 330000,
         cityCode: null
       },
       formDataRules1: {
@@ -115,8 +115,8 @@ export default {
       },
       // 验证省市区
       form2Data: {
-        provinceCode: 110000,
-        cityCode: 110100,
+        provinceCode: 330000,
+        cityCode: 330100,
         regionCode: null
       },
       formDataRules2: {
