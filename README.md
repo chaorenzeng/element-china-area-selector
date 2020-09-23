@@ -39,11 +39,22 @@ Vue.use(ElementChinaAreaSelector)
 | regionDisabled   | false  | Boolean | 否       | 是否区县不可选                                                                   |
 | options          | null   | Object  | 否       | [更多配置](https://element.eleme.cn/#/zh-CN/component/form#form-item-attributes) |
 
-### 可选方法
+### 事件
 
-| 方法名           | 说明               |
+| 事件名           | 说明               |
 | ---------------- | ------------------ |
 | areaSelectChange | 返回选中项城市信息 |
+
+### 返回
+
+| 属性名       | 说明     |
+| ------------ | -------- |
+| provinceCode | 省份编码 |
+| provinceName | 省份名   |
+| cityCode     | 市编码   |
+| cityName     | 市名     |
+| regionCode   | 区县编码 |
+| regionName   | 区县名   |
 
 ### 案例
 

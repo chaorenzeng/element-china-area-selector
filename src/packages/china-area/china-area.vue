@@ -31,7 +31,6 @@
     <el-select
       v-if="showRegion"
       v-model="region"
-      :loading="loadingRegion"
       :disabled="disabled || regionDisabled"
       placeholder="请选择区县"
       @change="changeRegion"
@@ -117,8 +116,11 @@ export default {
       loadingCity: false,
       loadingRegion: false,
       province: null,
+      provinceName: '',
       city: null,
+      cityName: '',
       region: null,
+      regionName: '',
       provinces: [],
       cities: [],
       regions: [],
@@ -169,8 +171,11 @@ export default {
     getAreaRes() {
       const res = {
         provinceCode: this.province,
+        provinceName: this.provinceName,
         cityCode: this.city,
-        regionCode: this.region
+        cityName: this.cityName,
+        regionCode: this.region,
+        regionName: this.regionName
       }
       return res
     },
@@ -184,6 +189,7 @@ export default {
         this.loadingCity = true
         for (const item of this.provinces) {
           if (item.ReginNum === value) {
+            this.provinceName = item.ReginName
             this.hasLoadCities = true
             this.cities = item.SubLst
             this.loadingCity = false
@@ -203,30 +209,34 @@ export default {
     // 修改城市
     changeCity(value) {
       // 加载区县
-      if (this.showRegion) {
-        if (!this.hasLoadCities) {
-          return
-        }
-        if (value !== '') {
-          this.region = null
-          this.loadingRegion = true
-          for (const item of this.cities) {
-            if (item.ReginNum === value) {
-              this.regions = item.SubLst
-              this.loadingRegion = false
-              break
-            } else {
-              continue
-            }
+      if (!this.hasLoadCities) {
+        return
+      }
+      if (value !== '') {
+        this.region = null
+        for (const item of this.cities) {
+          if (item.ReginNum !== value) continue
+          this.cityName = item.ReginName
+          if (this.showRegion) {
+            this.regions = item.SubLst
           }
-        } else {
-          this.regions = []
+          break
         }
+      } else {
+        this.regions = []
       }
       this.$emit('areaSelectChange', this.getAreaRes())
     },
     // 修改区县
-    changeRegion() {
+    changeRegion(value) {
+      for (const item of this.regions) {
+        if (item.ReginNum === value) {
+          this.regionName = item.ReginName
+          break
+        } else {
+          continue
+        }
+      }
       this.$emit('areaSelectChange', this.getAreaRes())
     }
   }
